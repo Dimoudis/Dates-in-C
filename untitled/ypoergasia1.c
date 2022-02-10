@@ -110,7 +110,7 @@ void day_of_year(struct Date date) {
         dofy += mo[i];
     }
     dofy += date.day;
-    printf("Day of the year: %d\n", dofy);
+    printf("\nDay of the year: %d\n", dofy);
 }
 
 int getNumOfDays(struct Date date) {
