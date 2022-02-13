@@ -60,11 +60,7 @@ void getDate() {
             printf("\nEnter number\n");
             while (getchar() != '\n');
         }
-        int numOfDays = -1;
-        if (globalDate.month == 2) {
-            numOfDays = 28;
-        }
-        numOfDays = 31;
+
         if (chkday(globalDate) != 1 ||
             chkmonth(globalDate.month) != 1 ||
             chkyear(globalDate.year) != 1) {
@@ -91,21 +87,21 @@ int chkday(struct Date date) {
 int chkmonth(int month) {
     if (month <= 0 || month > 12) {
         printf("Invalid month\n");
-        return 1;
+        return -1;
     }
-    return 0;
+    return 1;
 }
 
 int chkyear(int year) {
     if (year <= 0) {
         printf("Invalid year\n");
-        return 1;
+        return -1;
     }
-    return 0;
+    return 1;
 }
 
 int is_leap(int year) {
-    if((y%400==0)||((y%4==0)&&(y%100!=0)))
+    if((year % 400 == 0)||((year % 4 == 0) && (year % 100 != 0)))
         //Leap year if perfectly divisible by 400
         //Leap year if perfectly divisible by 4
         //but if not divisible by 100
@@ -126,7 +122,7 @@ void day_of_year(struct Date date) {
         dofy += mo[i];
     }
     dofy += date.day;
-    printf("\nDay of the year: %d, %d days left for the end of the year\n", dofy, 365-dofy);
+    printf("\nDay of the year: %d, %d days left for the end of the year\n", dofy, 365 - dofy - is_leap(date.year));
 }
 
 int getNumOfDays(struct Date date) {
